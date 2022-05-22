@@ -1,12 +1,12 @@
-import { GetServerSidePropsContext } from 'next';
 import { useState } from 'react';
 import { getCookie, setCookies } from 'cookies-next';
 import Head from 'next/head';
 import { MantineProvider, ColorSchemeProvider } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
+import { SessionProvider } from "next-auth/react"
 
 export default function App(props) {
-  const { Component, pageProps } = props;
+  const { Component, session, pageProps } = props;
   const [colorScheme, setColorScheme] = useState(props.colorScheme);
 
   const toggleColorScheme = (value) => {
@@ -26,7 +26,9 @@ export default function App(props) {
       <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
         <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
           <NotificationsProvider>
-            <Component {...pageProps} />
+            <SessionProvider session={session}>
+              <Component {...pageProps} />
+            </SessionProvider>
           </NotificationsProvider>
         </MantineProvider>
       </ColorSchemeProvider>
