@@ -37,3 +37,6 @@ This template comes with several essential features:
 - `storybook` – starts storybook dev server
 - `storybook:build` – build production storybook bundle to `storybook-static`
 - `prettier:write` – formats all files with Prettier
+
+### Contributors
+Favicon by <a href="https://iconscout.com/contributors/vincent-le-moign" target="_blank">Vincent Le Moign</a>
