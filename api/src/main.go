@@ -2,10 +2,12 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
+	"api/client"
 )
 
 func main() {
 	// create redis client (learn more: https://github.com/go-redis/redis)
+	client.InitRedisClient()
 
 	// create gin http server (learn more: https://github.com/gin-gonic/gin)
 	r := gin.Default()
