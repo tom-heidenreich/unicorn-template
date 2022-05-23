@@ -11,7 +11,7 @@ import (
 var ctx = context.Background()
 var client *redis.Client
 
-func initRedisClient() {
+func InitRedisClient() {
 	client = redis.NewClient(&redis.Options{
 		Addr:     "redis:6379",
 		Password: "",
@@ -20,11 +20,11 @@ func initRedisClient() {
 }
 
 type Session struct {
-	username string
-	password string
+	Username string
+	Password string
 }
 
-func createSession(session Session) (string, error) {
+func CreateSession(session Session) (string, error) {
 
 	// generate session id
 	sessionId := uuid.New().String()
@@ -45,7 +45,7 @@ func createSession(session Session) (string, error) {
 	return sessionId, nil
 }
 
-func getSession(sessionId string) (Session, error) {
+func GetSession(sessionId string) (Session, error) {
 
 	value, redis_err := client.Get(ctx, sessionId).Result()
 
