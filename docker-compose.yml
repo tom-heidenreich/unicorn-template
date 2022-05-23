@@ -3,9 +3,17 @@ services:
   api:
     networks:
       - internal
+    depends_on:
+      - redis
   frontend:
     networks:
       - internal
+    depends_on:
+      - api
+  redis:
+    networks:
+      - internal
+    restart: unless-stopped
 networks:
   internal:
     driver: bridge
