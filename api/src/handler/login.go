@@ -19,9 +19,15 @@ var LoginHandler gin.HandlerFunc = func(ctx *gin.Context) {
 	}
 
 	// create entry
-	client.createSession(client.Session{username: json.User, password: json.Password})
+	sessionId, err := client.CreateSession(client.Session{Username: json.User, Password: json.Password})
+
+	if err != nil {
+		ctx.JSON(500, gin.H{"error": err.Error()})
+		return;
+	}
 
 	ctx.JSON(200, gin.H{
 		"message": "logged in",
+		"sessionId": sessionId,
 	})
 }
