@@ -1,7 +1,9 @@
 FROM golang:1.18
 
-COPY . .
+COPY . /app
 
-# RUN go get .
+WORKDIR /app/src
 
-CMD ["go run main.go"]
+RUN go mod vendor
+
+CMD ["go run ."]
