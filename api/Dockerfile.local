@@ -6,6 +6,4 @@ WORKDIR /app/src
 
 RUN go mod vendor
 
-RUN go build .
-
-CMD ["./api"]
+CMD ["go run ."]
