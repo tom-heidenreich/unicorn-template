@@ -6,4 +6,4 @@ WORKDIR /app/src
 
 RUN go mod vendor
 
-CMD ["go run ."]
+CMD ["go", "run", "."]
