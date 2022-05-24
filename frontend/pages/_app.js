@@ -3,10 +3,9 @@ import { getCookie, setCookies } from 'cookies-next';
 import Head from 'next/head';
 import { MantineProvider, ColorSchemeProvider } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
-import { SessionProvider } from "next-auth/react"
 
 export default function App(props) {
-  const { Component, session, pageProps } = props;
+  const { Component, pageProps } = props;
   const [colorScheme, setColorScheme] = useState(props.colorScheme);
 
   const toggleColorScheme = (value) => {
@@ -18,7 +17,7 @@ export default function App(props) {
   return (
     <>
       <Head>
-        <title>Mantine next example</title>
+        <title>Next.js + Mantine Template</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
         <link rel="shortcut icon" href="/favicon.svg" />
       </Head>
@@ -26,9 +25,7 @@ export default function App(props) {
       <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
         <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
           <NotificationsProvider>
-            <SessionProvider session={session}>
-              <Component {...pageProps} />
-            </SessionProvider>
+            <Component {...pageProps} />
           </NotificationsProvider>
         </MantineProvider>
       </ColorSchemeProvider>
