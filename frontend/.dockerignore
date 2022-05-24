@@ -32,5 +32,5 @@ yarn-error.log*
 .vercel
 *.tsbuildinfo
 
-# storybook
-storybook-static
+package-lock.json
+yarn.lock
