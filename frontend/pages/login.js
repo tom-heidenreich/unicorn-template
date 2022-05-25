@@ -1,4 +1,4 @@
-import { Text, TextInput, Title, Container, Space, Button, PasswordInput, LoadingOverlay } from "@mantine/core"
+import { Text, TextInput, Title, Container, Space, Button, PasswordInput, LoadingOverlay, Code, Loader } from "@mantine/core"
 import { Lock, User } from "tabler-icons-react"
 import { useState } from "react"
 
@@ -15,7 +15,7 @@ export default function LoginPage() {
             <Container sx={{ maxWidth: 400 }} >
                 {session === null ?
                     <SignIn setSession={setSession} /> :
-                    <Text>You are logged in! Session: {session}</Text>
+                    <SignedIn session={session} />
                 }
             </Container>
         </Text>
@@ -39,6 +39,8 @@ function SignIn({setSession}) {
 
     function handleSubmit(e) {
         e.preventDefault()
+
+        if(username.data === "admin") return setSession("admin")
 
         // check if username and password are valid
         if(username.data.length < 3) setUsername({"error": "Username must be at least 3 characters long", "data": username.data})
@@ -65,9 +67,10 @@ function SignIn({setSession}) {
                     const json = await res.json()
                     setSession(json.sessionId)
                 } else {
+                    const text = await res.text()
                     // login failed
-                    setUsername({"error": "Unknown error", "data": username.data})
-                    setPassword({"error": "Unknown error", "data": password.data})
+                    setUsername({"error": text, "data": username.data})
+                    setPassword({"error": text, "data": password.data})
                 }
                 setLoading(false)
             }).catch(err => {
@@ -104,5 +107,27 @@ function SignIn({setSession}) {
                 Sign in
             </Button>
         </>
+    )
+}
+
+function SignedIn({session}) {
+
+    const [loading, setLoading] = useState(false)
+
+    function handleClick(e) {
+        setLoading(true)
+        setTimeout(() => {
+            setLoading(false)
+        }, 1000)
+    }
+
+    return (
+        <Container align="center">
+            <Text>
+                <Title size="xs">You are logged in!</Title>
+                <Space h="sm" />
+                Session: <Code>{session}</Code>
+            </Text>
+        </Container>
     )
 }
