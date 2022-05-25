@@ -7,13 +7,14 @@ import (
 )
 
 type Login struct {
-	User     string `json:"user" binding:"required"`
+	User     string `json:"username" binding:"required"`
 	Password string `json:"password" binding:"required"`
 }
 
 var LoginHandler gin.HandlerFunc = func(ctx *gin.Context) {
 	var json Login
 	if err := ctx.ShouldBindJSON(&json); err != nil {
+		println(err.Error())
 		ctx.JSON(400, gin.H{"error": err.Error()})
 		return
 	}
@@ -22,8 +23,9 @@ var LoginHandler gin.HandlerFunc = func(ctx *gin.Context) {
 	sessionId, err := client.CreateSession(client.Session{Username: json.User, Password: json.Password})
 
 	if err != nil {
+		println(err.Error())
 		ctx.JSON(500, gin.H{"error": err.Error()})
-		return;
+		return
 	}
 
 	ctx.JSON(200, gin.H{
