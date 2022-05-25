@@ -22,12 +22,17 @@ export function Welcome() {
       </Text>
       <Space mt="xl" />
       <Title align="center" size="lg" sx={{ maxWidth: 580 }} mx="auto" mt="xl">
-        What modules are used?
+        Interact with API
       </Title>
       <Text color="dimmed" align="center" size="lg" sx={{ maxWidth: 580 }} mx="auto" mt="xl">
-        This starter Next.js project includes modules such as Mantine, NextAuth.js and {' '}
-        <Anchor href="/modules">
-         more
+        See how to create a session with username and password{' '}
+        <Anchor href="/login">
+          here
+        </Anchor>
+        .
+        To get started follow {' '}
+        <Anchor href="/docs/api">
+          this guide
         </Anchor>
         .
       </Text>
