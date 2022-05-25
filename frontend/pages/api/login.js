@@ -1,6 +1,8 @@
-export default function handler(req, res) {
+import fetch from "node-fetch"
+
+export default async function handler(req, res) {
     if(req.method != "POST") {
-        res.end(405, "Method not allowed")
+        res.status(405).end("Method not allowed")
         return
     }
 
@@ -10,56 +12,59 @@ export default function handler(req, res) {
     const password = body.password
 
     if(!username || !password) {
-        res.end(400, "Missing username or password")
+        res.status(400).end("Missing username or password")
         return
     }
 
     if(username.length < 3) {
-        res.end(400, "Username must be at least 3 characters long")
+        res.status(400).end("Username must be at least 3 characters long")
         return
     }
     else if(username.length > 20) {
-        res.end(400, "Username must be less than 20 characters long")
+        res.status(400).end("Username must be less than 20 characters long")
         return
     }
     else if(!username.match(/^[a-zA-Z0-9_]+$/)) {
-        res.end(400, "Username must only contain letters, numbers and underscores")
+        res.status(400).end("Username must only contain letters, numbers and underscores")
         return
     }
     else if(password.length < 5) {
-        res.end(400, "Password must be at least 5 characters long")
+        res.status(400).end("Password must be at least 5 characters long")
         return
     }
     else if(password.length > 30) {
-        res.end(400, "Password must be less than 30 characters long")
+        res.status(400).end("Password must be less than 30 characters long")
         return
     }
     else if(!password.match(/[0-9]/)) {
-        res.end(400, "Password must contain at least one number")
+        res.status(400).end("Password must contain at least one number")
         return
     }
 
-    // login
-    fetch("http://api:3000/login", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            "username": username,
-            "password": password
+    try {
+
+        // login
+        const apiRes = await fetch("http://api:3000/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                "username": username,
+                "password": password
+            })
         })
-    }).then(async res => {
-        if(res.status === 200) {
+
+        const json = await apiRes.json()
+        if(apiRes.status === 200) {
             // login successful
-            const json = await res.json()
             res.json(json)
         } else {
             // login failed
-            res.end(400, "Unknown error")
+            res.status(400).json(json)
         }
-    }).catch(err => {
-        console.error(err)
-        res.end(500, "Internal server error")
-    })
+    }catch(e) {
+        console.log(e)
+        res.status(500).end("Internal server error")
+    }
 }
