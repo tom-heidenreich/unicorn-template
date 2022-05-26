@@ -1,6 +1,6 @@
 describe('Login Page', () => {
     beforeEach(() => {
-        cy.visit('http://localhost:3000/login')
+        cy.visit('http://localhost/login')
     })
 
     it('should not work because username is too short', () => {

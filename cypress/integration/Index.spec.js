@@ -1,6 +1,6 @@
 describe('Welcome Page', () => {
     beforeEach(() => {
-        cy.visit('http://localhost:3000')
+        cy.visit('http://localhost')
     })
 
     it('should have a title', () => {
