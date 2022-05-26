@@ -1,7 +1,7 @@
 package main
 
 import (
-	"api/handler" // shows error but there is none
+	"api/handler"
 
 	"github.com/gin-gonic/gin"
 )
