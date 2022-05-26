@@ -1,10 +1,5 @@
 > **Note:** This is *work in progress* 
 
-## Techstack
-* Go
-* Next.js
-* Docker
-
 ## Run local
 Clone the project
 ```shell
@@ -18,3 +13,11 @@ $ git clone https://github.com/tom-heidenreich/unicorn-template.git
 * Click `Select`
 * Select `dockerfile.local.yml`
 * Select the service to work on
+
+## Testing
+Tests with cypress
+
+## Techstack
+* Go
+* Next.js
+* Docker
