@@ -1,0 +1,23 @@
+{
+  "name": "unicorn-template",
+  "version": "1.0.0",
+  "description": "> **Note:** This is *work in progress*",
+  "scripts": {
+    "cypress": "npx cypress run",
+    "cypress:open": "npx cypress open",
+    "test": "npm run cypress"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tom-heidenreich/unicorn-template.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tom-heidenreich/unicorn-template/issues"
+  },
+  "homepage": "https://github.com/tom-heidenreich/unicorn-template#readme",
+  "devDependencies": {
+    "cypress": "^9.7.0"
+  }
+}
