@@ -10,3 +10,5 @@ services:
       context: frontend
       dockerfile: ./Dockerfile
     restart: unless-stopped
+    ports:
+      - "80:3000"
