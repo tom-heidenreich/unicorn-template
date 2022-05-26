@@ -90,6 +90,7 @@ function SignIn({setSession}) {
                 error={username.error}
                 placeholder="Your Username"
                 onChange={handleUsernameChange}
+                name="username"
             />
             <Space h="sm" />
             <PasswordInput
@@ -99,6 +100,7 @@ function SignIn({setSession}) {
                 error={password.error}
                 placeholder="Your Password"
                 onChange={handlePasswordChange}
+                name="password"
             />
             <Space h="xl" />
             <Button
@@ -111,16 +113,6 @@ function SignIn({setSession}) {
 }
 
 function SignedIn({session}) {
-
-    const [loading, setLoading] = useState(false)
-
-    function handleClick(e) {
-        setLoading(true)
-        setTimeout(() => {
-            setLoading(false)
-        }, 1000)
-    }
-
     return (
         <Container align="center">
             <Text>
