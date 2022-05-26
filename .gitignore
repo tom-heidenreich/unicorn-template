@@ -1,1 +1,10 @@
 .devcontainer
+
+node_modules
+
+package-lock.json
+
+# cypress
+/cypress/videos
+/cypress/screenshots
+/cypress/downloads
