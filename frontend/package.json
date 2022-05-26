@@ -14,8 +14,7 @@
     "jest:watch": "jest --watch",
     "prettier:check": "prettier --check \"**/*.{ts,tsx}\"",
     "prettier:write": "prettier --write \"**/*.{ts,tsx}\"",
-    "cypress": "npx cypress run",
-    "test": "npm run prettier:check && npm run lint && npm run typecheck && npm run jest && npm run cypress"
+    "test": "npm run prettier:check && npm run lint && npm run typecheck && npm run jest"
   },
   "dependencies": {
     "@mantine/core": "4.2.2",
@@ -49,7 +48,6 @@
     "@typescript-eslint/eslint-plugin": "^5.16.0",
     "@typescript-eslint/parser": "^5.16.0",
     "babel-loader": "^8.2.4",
-    "cypress": "^9.7.0",
     "eslint": "^8.11.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-typescript": "^16.1.4",
