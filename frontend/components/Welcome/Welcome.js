@@ -6,7 +6,7 @@ export function Welcome() {
 
   return (
     <Text style={{'userSelect': 'none'}}>
-      <Title className={classes.title} align="center" mt={100}>
+      <Title id='welcome-title' className={classes.title} align="center" mt={100}>
         Welcome to the <br/> next {' '}
         <Text inherit variant="gradient" component="span" gradient={{ from: 'mediumvioletred', to: 'hotpink', deg: 45 }}>
           Unicorn
