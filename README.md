@@ -1,8 +1,5 @@
-<h1 align="center">
-    Welcome to the next Unicorn
-    <br/>
-    <span style="color: gray; font-size: 1.2rem;">Release 1.0.0</span>
-</h1>
+<img href="/.assets/unicorn_banner.png"/>
+<span style="color: gray; font-size: 1.2rem;">Release 1.0.0</span>
 
 This template will help you build the next unicorn and go to the moon.
 The API is built with [Gin](https://github.com/gin-gonic/gin) and the
