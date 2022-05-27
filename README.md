@@ -1,7 +1,10 @@
-<p align="center">
-    <img height=100 href="https://raw.githubusercontent.com/tom-heidenreich/unicorn-template/prerelease-1.0.0/.assets/unicorn_banner.png"/>
-    <span style="color: gray; font-size: 1.2rem;">Release 1.0.0</span>
-</p>
+<a href="https://github.com/tom-heidenreich/unicorn-template">
+    <p align="center">
+        <img height=100 src="https://raw.githubusercontent.com/tom-heidenreich/unicorn-template/prerelease-1.0.0/.assets/unicorn_banner.svg"/>
+        <br/>
+        <span style="color: gray; font-size: 1.2rem;">Release 1.0.0</span>
+    </p>
+</a>
 
 This template will help you build the next unicorn and go to the moon.
 The API is built with [Gin](https://github.com/gin-gonic/gin) and the
