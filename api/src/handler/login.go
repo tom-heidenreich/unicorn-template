@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"api/client"
+	"api/client/redis"
 
 	"github.com/gin-gonic/gin"
 )
@@ -20,7 +20,7 @@ var LoginHandler gin.HandlerFunc = func(ctx *gin.Context) {
 	}
 
 	// create entry
-	sessionId, err := client.CreateSession(client.Session{Username: json.User, Password: json.Password})
+	sessionId, err := redis.CreateSession(redis.Session{Username: json.User, Password: json.Password})
 
 	if err != nil {
 		println(err.Error())
@@ -29,7 +29,7 @@ var LoginHandler gin.HandlerFunc = func(ctx *gin.Context) {
 	}
 
 	ctx.JSON(200, gin.H{
-		"message": "logged in",
+		"message":   "logged in",
 		"sessionId": sessionId,
 	})
 }

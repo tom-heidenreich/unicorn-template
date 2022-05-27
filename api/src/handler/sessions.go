@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"api/client"
+	"api/client/redis"
 
 	"github.com/gin-gonic/gin"
 )
@@ -10,7 +10,7 @@ var SessionHandler gin.HandlerFunc = func(ctx *gin.Context) {
 
 	sessionId := ctx.Param("sessionId")
 
-	session, err := client.GetSession(sessionId)
+	session, err := redis.GetSession(sessionId)
 
 	if err != nil {
 		ctx.JSON(500, gin.H{
