@@ -1,5 +1,7 @@
 <h1 align="center">
     Welcome to the next Unicorn
+    <br/>
+    <span style="color: gray; font-size: 1.2rem;">Release 1.0.0</span>
 </h1>
 
 This template will help you build the next unicorn and go to the moon.
