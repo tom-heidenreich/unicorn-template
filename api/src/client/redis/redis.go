@@ -1,4 +1,4 @@
-package client
+package redis
 
 import (
 	"context"
@@ -11,7 +11,7 @@ import (
 var ctx = context.Background()
 var client *redis.Client
 
-func InitRedisClient() {
+func New() {
 	client = redis.NewClient(&redis.Options{
 		Addr:     "redis:6379",
 		Password: "",
