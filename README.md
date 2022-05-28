@@ -13,8 +13,6 @@ Frontend with [Next.js](https://nextjs.org).
 
 > **Note:** This is *work in progress* 
 
-<br/>
-
 ## Run local
 * Clone the project
 ```shell
@@ -28,8 +26,6 @@ or (_for Windows_):
 ```shell
 $ docker-compose -f docker-compose.yml -f docker-compose.local.yml up --build
 ```
-
-<br/>
 
 ## Work in DevContainer
 * Install [Docker](https://www.docker.com/get-started/)
