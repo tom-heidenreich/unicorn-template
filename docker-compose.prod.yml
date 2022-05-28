@@ -5,6 +5,11 @@ services:
       context: ./api
       dockerfile: ./Dockerfile
     restart: unless-stopped
+    environment:
+      - DATABASE_USERNAME=MyUsername
+      - DATABASE_PASSWORD=MyPassword
+      - DATABASE_HOST=MyDatabaseHost:27017
+      - DATABASE_NAME=MyDatabase
   frontend:
     build:
       context: frontend
