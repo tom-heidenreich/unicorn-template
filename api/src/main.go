@@ -10,6 +10,12 @@ import (
 )
 
 func main() {
+
+	// set to release mode
+	if os.Getenv("MODE") == "prod" {
+		gin.SetMode(gin.ReleaseMode)
+	}
+
 	// create redis client (learn more: https://github.com/go-redis/redis)
 	go redis.New()
 
