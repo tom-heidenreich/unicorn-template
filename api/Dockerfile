@@ -4,6 +4,8 @@ COPY . /app
 
 WORKDIR /app/src
 
+ENV MODE=prod
+
 RUN go mod vendor
 
 RUN go build .
