@@ -9,6 +9,9 @@ services:
       - MONGODB_PASSWORD=root
       - MONGODB_HOST=database:27017
       - MONGODB_NAME=local_db
+    depends_on:
+      - redis
+      - database
   frontend:
     build:
       context: ./frontend
