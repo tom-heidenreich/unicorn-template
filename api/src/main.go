@@ -1,6 +1,7 @@
 package main
 
 import (
+	"api/client/mongodb"
 	"api/client/redis"
 
 	"os"
@@ -17,6 +18,9 @@ func main() {
 
 	// create redis client (learn more: https://github.com/go-redis/redis)
 	go redis.New()
+
+	// create mongodb client (learn more: https://github.com/mongodb/mongo-go-driver)
+	go mongodb.New(os.Getenv("MONGODB_HOST"), os.Getenv("MONGODB_NAME"), os.Getenv("MONGODB_USER"), os.Getenv("MONGODB_PASSWORD"))
 
 	// create gin http server (learn more: https://github.com/gin-gonic/gin)
 	r := gin.Default()
