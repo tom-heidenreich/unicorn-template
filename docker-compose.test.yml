@@ -1,0 +1,14 @@
+version: '3'
+services:
+  api:
+    environment:
+      - DATABASE_USERNAME=root
+      - DATABASE_PASSWORD=root
+      - DATABASE_HOST=database:27017
+      - DATABASE_NAME=local_db
+  database:
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
+      - MONGO_INITDB_DATABASE=local_db
