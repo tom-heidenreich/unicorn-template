@@ -5,10 +5,10 @@ services:
       context: ./api
       dockerfile: ./Dockerfile.local
     environment:
-      - DATABASE_USERNAME=root
-      - DATABASE_PASSWORD=root
-      - DATABASE_HOST=database:27017
-      - DATABASE_NAME=local_db
+      - MONGODB_USER=root
+      - MONGODB_PASSWORD=root
+      - MONGODB_HOST=database:27017
+      - MONGODB_NAME=local_db
   frontend:
     build:
       context: ./frontend

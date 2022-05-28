@@ -6,10 +6,10 @@ services:
       dockerfile: ./Dockerfile
     restart: unless-stopped
     environment:
-      - DATABASE_USERNAME=MyUsername
-      - DATABASE_PASSWORD=MyPassword
-      - DATABASE_HOST=MyDatabaseHost:27017
-      - DATABASE_NAME=MyDatabase
+      - MONGODB_USER=MyUsername
+      - MONGODB_PASSWORD=MyPassword
+      - MONGODB_HOST=MyDatabaseHost:27017
+      - MONGODB_NAME=MyDatabase
   frontend:
     build:
       context: frontend
