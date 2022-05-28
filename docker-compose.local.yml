@@ -4,9 +4,20 @@ services:
     build:
       context: ./api
       dockerfile: ./Dockerfile.local
+    environment:
+      - DATABASE_USERNAME=root
+      - DATABASE_PASSWORD=root
+      - DATABASE_HOST=database:27017
+      - DATABASE_NAME=local_db
   frontend:
     build:
       context: ./frontend
       dockerfile: ./Dockerfile.local
     ports:
       - "3000:3000"
+  database:
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
+      - MONGO_INITDB_DATABASE=local_db
