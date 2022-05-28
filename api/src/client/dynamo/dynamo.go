@@ -3,7 +3,7 @@ package dynamo
 import (
 	"encoding/json"
 
-	"api/vendor/github.com/google/uuid"
+	"github.com/google/uuid"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
