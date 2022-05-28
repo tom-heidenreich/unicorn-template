@@ -2,8 +2,9 @@ package handler
 
 import (
 	"api/client/mongodb"
-	"api/vendor/go.mongodb.org/mongo-driver/bson/primitive"
 	"encoding/json"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
 
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/bson"
