@@ -13,7 +13,13 @@ var client *mongo.Client
 
 var Database *mongo.Database
 
-func New(host string, database string, credentials options.Credential) {
+func New(host string, database string, username string, password string) {
+
+	credentials := options.Credential{
+		Username: username,
+		Password: password,
+	}
+
 	var ctx context.Context
 	ctx, cancel = context.WithTimeout(context.Background(), 10*time.Second)
 
