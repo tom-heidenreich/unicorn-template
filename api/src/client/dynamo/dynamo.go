@@ -1,15 +1,17 @@
 package dynamo
 
 import (
+	"encoding/json"
+
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/guregu/dynamo"
 )
 
 type Entry struct {
-	partition string
+	Partition string
 
-	value string
+	Value string
 }
 
 var table dynamo.Table
@@ -24,8 +26,19 @@ func NewConfig(tableId string, config aws.Config) {
 	table = db.Table(tableId)
 }
 
-func Put(key, value string) error {
-	return table.Put(Entry{}).Run()
+func Put(key string, value string) error {
+	return table.Put(Entry{Partition: key, Value: value}).Run()
+}
+
+func PutJSON(key string, value interface{}) error {
+
+	json, err := json.Marshal(value)
+
+	if err != nil {
+		return err
+	}
+
+	return Put(key, string(json))
 }
 
 func Get(key string) (Entry, error) {
