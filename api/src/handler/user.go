@@ -2,7 +2,6 @@ package handler
 
 import (
 	"api/client/mongodb"
-	"encoding/json"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"
 
@@ -37,14 +36,8 @@ func UserGetHandler(ctx *gin.Context) {
 		ctx.JSON(500, gin.H{"error": err.Error()})
 		return
 	}
-	json, err := json.Marshal(result)
 
-	if err != nil {
-		ctx.JSON(500, gin.H{"error": err.Error()})
-		return
-	}
-
-	ctx.JSON(200, string(json))
+	ctx.JSON(200, result)
 }
 
 func UserPostHandler(ctx *gin.Context) {
