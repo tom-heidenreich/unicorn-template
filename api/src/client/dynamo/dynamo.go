@@ -3,6 +3,8 @@ package dynamo
 import (
 	"encoding/json"
 
+	"api/vendor/github.com/google/uuid"
+
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/guregu/dynamo"
@@ -15,6 +17,10 @@ type Entry struct {
 }
 
 var table dynamo.Table
+
+func ID() string {
+	return uuid.New().String()
+}
 
 func New(tableId string) {
 	NewConfig(tableId, aws.Config{Region: aws.String("us-west-2")})
