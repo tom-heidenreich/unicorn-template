@@ -1,7 +1,6 @@
 package main
 
 import (
-	"api/client/dynamo"
 	"api/client/redis"
 
 	"os"
@@ -18,9 +17,6 @@ func main() {
 
 	// create redis client (learn more: https://github.com/go-redis/redis)
 	go redis.New()
-
-	// create dynamoDB client (learn more: https://github.com/guregu/dynamo)
-	go dynamo.New(os.Getenv("DynamoTable"))
 
 	// create gin http server (learn more: https://github.com/gin-gonic/gin)
 	r := gin.Default()
