@@ -19,6 +19,9 @@ func main() {
 	// create gin http server (learn more: https://github.com/gin-gonic/gin)
 	r := gin.Default()
 
+	// remove trusted proxies
+	r.SetTrustedProxies([]string{})
+
 	for _, route := range routes {
 		switch route.method {
 		case "get":
