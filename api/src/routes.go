@@ -14,8 +14,8 @@ type Route struct {
 
 var routes = []Route{
 	{method: "get", path: "/ping", handler: handler.PingHandler},
-	{method: "post", path: "/login", handler: handler.LoginHandler},
-	{method: "get", path: "/sessions/:sessionId", handler: handler.SessionHandler},
+	{method: "post", path: "/session", handler: handler.SessionPostHandler},
+	{method: "get", path: "/session/:sessionId", handler: handler.SessionGetHandler},
 	{method: "get", path: "/user/:id", handler: handler.UserGetHandler},
 	{method: "post", path: "/user", handler: handler.UserPostHandler},
 }
