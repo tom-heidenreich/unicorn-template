@@ -28,7 +28,10 @@ func New(host string, database string, username string, password string) {
 	client, err = mongo.Connect(ctx, options.Client().ApplyURI("mongodb://"+host).SetAuth(credentials))
 
 	if err != nil {
-		panic(err)
+		println("Error connecting to mongodb: " + err.Error())
+		time.Sleep(time.Second)
+		New(host, database, username, password)
+		return
 	}
 
 	if err = client.Ping(ctx, nil); err != nil {
