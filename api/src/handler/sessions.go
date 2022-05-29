@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-var SessionHandler gin.HandlerFunc = func(ctx *gin.Context) {
+func SessionGetHandler(ctx *gin.Context) {
 
 	sessionId := ctx.Param("sessionId")
 
@@ -19,8 +19,30 @@ var SessionHandler gin.HandlerFunc = func(ctx *gin.Context) {
 		return
 	}
 
+	ctx.JSON(200, session)
+}
+
+func SessionPostHandler(ctx *gin.Context) {
+
+	var session redis.Session
+
+	if err := ctx.ShouldBindJSON(&session); err != nil {
+		ctx.JSON(400, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
+
+	sessionId, err := redis.CreateSession(session)
+
+	if err != nil {
+		ctx.JSON(500, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
+
 	ctx.JSON(200, gin.H{
-		"username": session.Username,
-		"password": session.Password,
+		"sessionId": sessionId,
 	})
 }
