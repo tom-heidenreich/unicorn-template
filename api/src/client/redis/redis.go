@@ -20,8 +20,13 @@ func New() {
 }
 
 type Session struct {
-	Username string
-	Password string
+	User string
+	Todo []Todo
+}
+
+type Todo struct {
+	Id   string
+	Todo string
 }
 
 func CreateSession(session Session) (string, error) {
