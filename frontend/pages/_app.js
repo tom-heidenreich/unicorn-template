@@ -3,6 +3,9 @@ import { getCookie, setCookies } from 'cookies-next';
 import Head from 'next/head';
 import { MantineProvider, ColorSchemeProvider } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
+import { Provider as ReduxProvider } from 'react-redux';
+
+import { store } from '../redux/store';
 
 export default function App(props) {
   const { Component, pageProps } = props;
@@ -25,7 +28,9 @@ export default function App(props) {
       <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
         <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
           <NotificationsProvider>
-            <Component {...pageProps} />
+            <ReduxProvider store={store}>
+              <Component {...pageProps} />
+            </ReduxProvider>
           </NotificationsProvider>
         </MantineProvider>
       </ColorSchemeProvider>
