@@ -2,6 +2,7 @@ package handler
 
 import (
 	"api/client/mongodb"
+	"api/client/redis"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"
 
@@ -11,8 +12,9 @@ import (
 )
 
 type User struct {
-	User     string `json:"username" binding:"required"`
-	Password string `json:"password" binding:"required"`
+	User      string `json:"username" binding:"required"`
+	Password  string `json:"password,omitempty" binding:"required"`
+	Client    string `json:"client,omitempty"`
 }
 
 func UserGetHandler(ctx *gin.Context) {
@@ -35,6 +37,8 @@ func UserGetHandler(ctx *gin.Context) {
 		ctx.JSON(500, gin.H{"error": err.Error()})
 		return
 	}
+
+	result.Password = ""
 
 	ctx.JSON(200, result)
 }
@@ -59,5 +63,17 @@ func UserPostHandler(ctx *gin.Context) {
 
 	id := res.InsertedID
 
-	ctx.JSON(200, gin.H{"id": id})
+	// create session
+	session := redis.Session{}
+	session.User = json.User
+
+	redis_err := redis.SetSession(json.Client, session)
+
+	if redis_err != nil {
+		println(err.Error())
+		ctx.JSON(500, gin.H{"error": err.Error()})
+		return
+	}
+
+	ctx.JSON(200, gin.H{"id": id, "sessionId": json.Client})
 }

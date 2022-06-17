@@ -16,7 +16,7 @@ export default function ApiDocs() {
                 <Space mt="xl" />
                 Test these routes: <br/>
                 <Code>/ping</Code>,{' '}
-                <Code>/login</Code> or{' '}
+                <Code>/todo</Code> or{' '}
                 <Code>/sessions/:id</Code>
             </Text>
         </>

@@ -1,4 +1,5 @@
 import fetch from "node-fetch"
+import clientHash from "../../modules/clienthash"
 
 export default async function handler(req, res) {
     if(req.method != "POST") {
@@ -44,14 +45,15 @@ export default async function handler(req, res) {
     try {
 
         // login
-        const apiRes = await fetch("http://api:3000/login", {
+        const apiRes = await fetch(`${process.env.API_URL}/user`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
                 "username": username,
-                "password": password
+                "password": password,
+                "client": clientHash({req, res})
             })
         })
 

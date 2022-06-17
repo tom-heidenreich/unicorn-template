@@ -21,7 +21,7 @@ func New(host string, database string, username string, password string) {
 	}
 
 	var ctx context.Context
-	ctx, cancel = context.WithTimeout(context.Background(), 10*time.Second)
+	ctx, cancel = context.WithTimeout(context.Background(), 20*time.Second)
 
 	var err error
 
@@ -37,6 +37,8 @@ func New(host string, database string, username string, password string) {
 	if err = client.Ping(ctx, nil); err != nil {
 		panic(err)
 	}
+
+	println("Connected to mongodb")
 
 	Database = client.Database(database)
 }

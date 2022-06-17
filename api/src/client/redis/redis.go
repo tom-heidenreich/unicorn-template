@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 
 	"github.com/go-redis/redis/v8"
-	"github.com/google/uuid"
 )
 
 var ctx = context.Background()
@@ -20,8 +19,8 @@ func New() {
 }
 
 type Session struct {
-	User string
-	Todo []Todo
+	User string `json:"user" binding:"required"`
+	Todo []Todo `json:"todo" binding:"required"`
 }
 
 type Todo struct {
@@ -29,25 +28,22 @@ type Todo struct {
 	Todo string
 }
 
-func CreateSession(session Session) (string, error) {
-
-	// generate session id
-	sessionId := uuid.New().String()
+func SetSession(sessionId string, session Session) error {
 
 	// session as json string
 	data, err := json.Marshal(session)
 
 	if err != nil {
-		return "", err
+		return err
 	}
 
 	redis_err := client.Set(ctx, sessionId, string(data), 0).Err()
 
 	if err != nil {
-		return "", redis_err
+		return redis_err
 	}
 
-	return sessionId, nil
+	return nil
 }
 
 func GetSession(sessionId string) (Session, error) {
